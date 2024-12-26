@@ -30,12 +30,12 @@ export const getPrompt = async(req: Request, res: Response) => {
         const result = await model.generateContent(prompt);
         const alpha = result.response.text();
     
-        fs.writeFileSync("transcript.txt", alpha, "utf-8");
+        fs.writeFileSync("./public/transcript.txt", alpha, "utf-8");
 
         let cleanedText = alpha.replace(/[#*]/g, ''); 
 
         const doc = new PDFDocument();
-        doc.pipe(fs.createWriteStream("transcript.pdf"));
+        doc.pipe(fs.createWriteStream("./public/transcript.pdf"));
         doc.fontSize(12);
         doc.moveDown(0.5);
         doc.text(cleanedText);
@@ -50,7 +50,7 @@ export const getPrompt = async(req: Request, res: Response) => {
 }
 
 export const getDownload = (req: Request, res:Response)=>{
-    const filePath = path.join(__dirname, "../../transcript.pdf");
+    const filePath = path.join(__dirname, "../../public/transcript.pdf");
   res.download(filePath, "document.pdf", (err) => {
     if (err) {
       console.error(err);

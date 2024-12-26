@@ -33,10 +33,10 @@ const getPrompt = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const prompt = additionalPrompt + "\n\n" + formattedTranscript.join("\n");
         const result = yield model.generateContent(prompt);
         const alpha = result.response.text();
-        fs_1.default.writeFileSync("transcript.txt", alpha, "utf-8");
+        fs_1.default.writeFileSync("./public/transcript.txt", alpha, "utf-8");
         let cleanedText = alpha.replace(/[#*]/g, '');
         const doc = new pdfkit_1.default();
-        doc.pipe(fs_1.default.createWriteStream("transcript.pdf"));
+        doc.pipe(fs_1.default.createWriteStream("./public/transcript.pdf"));
         doc.fontSize(12);
         doc.moveDown(0.5);
         doc.text(cleanedText);
@@ -50,7 +50,7 @@ const getPrompt = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getPrompt = getPrompt;
 const getDownload = (req, res) => {
-    const filePath = path_1.default.join(__dirname, "../../transcript.pdf");
+    const filePath = path_1.default.join(__dirname, "../../public/transcript.pdf");
     res.download(filePath, "document.pdf", (err) => {
         if (err) {
             console.error(err);

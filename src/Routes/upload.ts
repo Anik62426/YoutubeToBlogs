@@ -16,7 +16,7 @@ import { Request, Response } from "express";
 
 export const uploadRouter = async (req: Request, res: Response) => {
   try {
-    const pdfPath = path.join(__dirname, "../../transcript.txt");
+    const pdfPath = path.join(__dirname, "../../public/transcript.txt");
 
     const result = await cloudinary.v2.uploader.upload(pdfPath, {
       resource_type: "raw",

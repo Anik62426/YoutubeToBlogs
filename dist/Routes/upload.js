@@ -25,7 +25,7 @@ cloudinary_1.default.v2.config({
 });
 const uploadRouter = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const pdfPath = path_1.default.join(__dirname, "../../transcript.txt");
+        const pdfPath = path_1.default.join(__dirname, "../../public/transcript.txt");
         const result = yield cloudinary_1.default.v2.uploader.upload(pdfPath, {
             resource_type: "raw",
             folder: "pdf_uploads",
