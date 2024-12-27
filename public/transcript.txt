@@ -1,69 +1,32 @@
-## Deploying an Express API to Vercel: A Step-by-Step Guide for Students
+## A Day at 100x Dev: Insights from Web3 Experts
 
-This blog post explains how to deploy an Express API to Vercel.  While Vercel isn't ideally suited for long-running Express APIs, this guide shows how it can be done for specific use cases.  Remember to review Vercel's documentation on limitations before proceeding.
-
-
-**I. Understanding the Limitations**
-
-Vercel is primarily designed for serverless functions and applications like Next.js. Deploying an Express API presents challenges because Express typically involves long-lived connections, which aren't optimal for Vercel's serverless architecture.  Vercel's documentation clearly outlines these limitations.  You should carefully consider if Vercel is the right platform for your Express API; it's generally better suited for applications that don't require persistent connections (like websockets or server-sent events).
+This blog post summarizes a 100x Dev meetup featuring prominent figures in the Web3 space.  The speakers shared their experiences, insights on hiring, and advice for aspiring developers.  The event was structured around individual speaker presentations, so this blog will follow that structure.
 
 
-**II. Setting up Your Express API**
+**Section 1: Karan – Co-Founder and CTO at Xerox People**
 
-This section assumes you already have a basic Express API built. If not, you'll need to create one first.  Numerous tutorials are available online to help you build a simple Express API. The example uses TypeScript but the concepts are applicable to JavaScript projects.
+Karan's journey began in college, participating in a student-run software development group called the Information Management Group. This experience mimicked a corporate journey, teaching him coding, project management, and team leadership. He then embarked on an entrepreneurial path, founding a Y Combinator-backed AI startup. After this experience, he transitioned into Web3, joining Xerox People, a crypto-native social network.
 
-* **Project Structure:** Organize your project so your Express app's main file (e.g., `app.ts` or `app.js`) is easily importable.
-
-* **Exporting the App:** Your main file must export the Express app instance.  This allows Vercel's deployment process to access and run your API.
+Xerox People aims to integrate on-chain activity with social identity.  Users' on-chain transactions, asset holdings, and affiliations are publicly visible, providing a more comprehensive profile.  This is particularly relevant in the Web3 context, where on-chain activities are significant.  They are building this in a bear market, anticipating future growth in the crypto space.  Karan emphasized the team's high talent density and their unique hiring process, focusing on exceptional "High CPU" (high processing power/skill) and entrepreneurial traits.  They value engineers who can not only write clean code but also contribute to product decisions and strategic thinking.
 
 
-**III. Preparing for Vercel Deployment**
+**Section 2: Ano – Co-Founder and CTO at Apex**
 
-This section details the modifications needed to make your Express API compatible with Vercel's serverless environment.
+Ano, from a Tier-3 college, proactively sought out startups. He shared two key experiences. First, he directly contacted the founder of a startup, expressing his interest and willingness to contribute.  This proactive approach led to an opportunity to build a video conferencing app, demonstrating his problem-solving skills. Second, during an interview at a Fintech company, he impressed the interviewers by replicating their app, including UPI payment integration, showcasing adaptability and exceeding expectations.
 
-* **API Folder:** Create an `API` folder to encapsulate your Express app.  Within this folder, create an `index.ts` (or `index.js`) file that imports and exports your Express app.
-
-* **Public Folder:** Create a `public` folder.  Even if your API doesn't serve static files, Vercel expects this folder to exist.  A `.gitkeep` file can be added to ensure Git tracks this empty folder.
-
-* **Vercel Configuration (`vercel.json`):**  This file is crucial for configuring how Vercel handles your API.  You'll need to add rewrite rules to redirect all incoming requests to your `API` folder's entry point.  The configuration will look similar to this (adjust paths as needed):
-
-```json
-{
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api"
-    }
-  ],
-  "builds": [
-    {
-      "src": "vercel-build",
-      "use": "@vercel/static"
-    }
-  ],
-  "functions": {
-    "api": {
-      "runtime": "nodejs16.x",  //Or your node version
-      "handler": "api/index.js" //Or api/index.ts
-    }
-  }
-}
-
-```
+Ano’s hiring criteria at Apex highlight three key aspects: curiosity, learning capability, and communication.  He appreciates candidates who ask insightful questions, demonstrate fast learning abilities, and communicate effectively within a team.  He also advocates for "building in public," sharing projects on platforms like GitHub and Twitter to increase visibility and attract opportunities.
 
 
-* **Build Command Override:** Add a `vercel.build` property to your `vercel.json` that essentially performs a no-op.  This prevents Vercel's default build process from interfering with your existing API setup.  A simple `echo "Hello"` command will suffice.
+**Section 3: Shake – Web3 Developer and Solana Expert**
+
+Shake's journey involved transitioning from Web2 to Web3. Initially bored with his job after an acquisition, he discovered Solana and Superteam, a Web3 community.  This community offered networking opportunities, mentorship, and exposure to hackathons, leading to significant financial gains.  He emphasizes the importance of finding the right online communities (like Superteam) for networking, learning, and career advancement in the fast-paced Web3 ecosystem. He highlights the current shortage of skilled Solana developers, creating a high demand for talent.
 
 
-**IV. Deployment to Vercel**
+**Section 4: Oen – Web3 Job Hopper and Hackathon Winner**
 
-The final step involves deploying your prepared API to Vercel.
-
-* **Vercel CLI:** Use the Vercel CLI (`vercel`) to create and deploy your project. Follow the CLI prompts to link your project to your Vercel account and specify the appropriate settings.  Ensure the build command is overridden as described in the previous section.
-
-* **Verification:** After deployment, test your API to confirm it functions correctly.  All requests should be routed to the entry point defined in the `vercel.json` file, which in turn launches your Express app.
+Oen shared her experience of working across multiple Web3 roles over a short period.  Her advice focuses on identifying and navigating growing markets.  Her success in winning multiple hackathons and securing a high-paying job demonstrates the financial potential within Web3, highlighting the rewards for skilled and adaptable individuals.
 
 
-**V. Conclusion**
+**Section 5:  Q&A and General Advice from the Panelists**
 
-Deploying an Express API to Vercel is possible, but not ideal for applications requiring long-lived connections. This guide provides a detailed walkthrough.  Always consult Vercel's official documentation for the most accurate and up-to-date information. Remember to carefully consider the limitations before proceeding.
+The Q&A session provided additional insights into various aspects of software development, including the relevance of DSA (Data Structures and Algorithms) versus practical development skills, the role of college degrees versus practical experience, and the importance of choosing a career path that aligns with personal interests.  A recurring theme was the importance of proactive engagement, continuous learning, and focusing on problem-solving skills rather than solely focusing on specific technologies or metrics like CGPA.  The panelists emphasized the opportunities and potential within the Web3 space, especially for those who are willing to actively seek out learning opportunities and build their skills.
