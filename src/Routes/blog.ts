@@ -12,7 +12,8 @@ export const getPrompt = async(req: Request, res: Response) => {
     try {
         const url = req.body.url;
         console.log(url)
-        const transcript = await YoutubeTranscript.fetchTranscript(url);
+        
+        const transcript = await YoutubeTranscript.fetchTranscript("https://youtu.be/z7Uv_A4bG-U?si=AB0OKDX9OGHBu1Sf");
          
         if(!transcript){
           throw new Error("Cannot find Transcript");
