@@ -15,7 +15,7 @@ app.use(express.json());
 dotenv.config({ path: "./.env" });
 
 
-app.get("/transcript",getPrompt);
+app.post("/transcript",getPrompt);
 
 app.get("/upload", uploadRouter);
 
