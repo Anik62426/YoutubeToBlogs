@@ -12,7 +12,11 @@ export const getPrompt = async(req: Request, res: Response) => {
     try {
         const url = req.body.url;
         const transcript = await YoutubeTranscript.fetchTranscript(url);
-    
+         
+        if(!transcript){
+          throw new Error("Cannot find Transcript");
+        }
+
         const formattedTranscript = transcript.map((item) => item.text);
     
         const apiKey = process.env.API_KEY;
