@@ -22,7 +22,7 @@ const getPrompt = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const url = req.body.url;
         console.log(url);
-        const transcript = yield youtube_transcript_1.YoutubeTranscript.fetchTranscript("https://youtu.be/z7Uv_A4bG-U?si=AB0OKDX9OGHBu1Sf");
+        const transcript = yield youtube_transcript_1.YoutubeTranscript.fetchTranscript(url);
         if (!transcript) {
             throw new Error("Cannot find Transcript");
         }
