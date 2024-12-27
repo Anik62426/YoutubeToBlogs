@@ -22,6 +22,9 @@ const getPrompt = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const url = req.body.url;
         const transcript = yield youtube_transcript_1.YoutubeTranscript.fetchTranscript(url);
+        if (!transcript) {
+            throw new Error("Cannot find Transcript");
+        }
         const formattedTranscript = transcript.map((item) => item.text);
         const apiKey = process.env.API_KEY;
         if (!apiKey) {
