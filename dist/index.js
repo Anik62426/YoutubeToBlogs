@@ -13,7 +13,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 dotenv_1.default.config({ path: "./.env" });
-app.post("/transcript", blog_2.getPrompt);
+app.get("/transcript", blog_2.getPrompt);
 app.get("/upload", upload_1.uploadRouter);
 app.get("/download", blog_1.getDownload);
 const PORT = process.env.PORT || 3000;
